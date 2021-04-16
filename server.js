@@ -11,14 +11,18 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT || 5000;
-
+var corsOptions = {
+    origin: ["https://react-sandy-skeleton.herokuapp.com/","http://localhost:3000"],
+    credentials: true,
+    optionsSuccessStatus: 200 // For legacy browser support
+    };
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieparser());
 app.use(compress())
 app.use(helmet())
-app.use(cors())
+app.use(cors(corsOptions))
 
 //set up DB connection..
 const uri = process.env.ATLAS_URI;
